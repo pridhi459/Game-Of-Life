@@ -10,7 +10,7 @@ public class Cell {
         this.state = CellState.DEAD;
     }
 
-    public void cellNextGeneration(int aliveNeighbours) {
+    public Cell cellNextGeneration(int aliveNeighbours) {
         if (this.isAlive()) {
             if (aliveNeighbours < 2 || aliveNeighbours > 3) {
                 this.kill();
@@ -20,6 +20,7 @@ public class Cell {
                 this.makeAlive();
             }
         }
+        return this;
     }
 
     public void kill() {

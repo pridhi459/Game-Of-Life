@@ -1,10 +1,11 @@
 package com.GameOfLife.entities;
 
 import com.GameOfLife.Exceptions.InvalidSeedingPopulationException;
+import com.GameOfLife.service.IOHelper;
 
 public class Grid {
 
-    public Cell[][] board;
+    private Cell[][] board;
 
     public Grid(int rows, int columns) {
         board = new Cell[rows][columns];
@@ -48,12 +49,7 @@ public class Grid {
     }
 
     public void printGrid() {
-        for (Cell[] cells : board) {
-            for (int j = 0; j < board[0].length; j++) {
-                System.out.print(cells[j].printCell() + " ");
-            }
-            System.out.println();
-        }
+        IOHelper.print(this.board);
     }
 
     public int countAliveCells() {
@@ -73,9 +69,10 @@ public class Grid {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
                 int aliveNeighbours = countAliveNeighbours(i, j);
-                board[i][j].cellNextGeneration(aliveNeighbours);
+                newGrid.board[i][j].cellNextGeneration(aliveNeighbours);
             }
         }
+       // printGrid();
         return newGrid;
     }
 
