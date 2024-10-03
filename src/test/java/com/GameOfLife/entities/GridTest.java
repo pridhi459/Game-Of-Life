@@ -62,6 +62,26 @@ class GridTest {
         assertEquals(20, aliveCells);
     }
 
+    @Test
+    void testGridLoopOf2Generations(){
+        Grid grid = new Grid(9, 9);
+        //grid.randomSeeding(50);
+grid.board[0][4].makeAlive();
+        grid.board[1][4].makeAlive();
+        grid.board[2][4].makeAlive();
 
+        grid.board[4][0].makeAlive();
+        grid.board[4][1].makeAlive();
+        grid.board[4][2].makeAlive();
 
+        grid.board[4][6].makeAlive();
+        grid.board[4][7].makeAlive();
+        grid.board[4][8].makeAlive();
+
+        grid.board[6][4].makeAlive();
+        grid.board[7][4].makeAlive();
+        grid.board[8][4].makeAlive();
+grid.printGrid();
+       // assertNotEquals(grid, newGrid2);
+    }
 }

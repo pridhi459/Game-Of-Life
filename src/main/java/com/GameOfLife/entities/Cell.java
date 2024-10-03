@@ -1,25 +1,37 @@
 package com.GameOfLife.entities;
 
-import com.GameOfLife.enums.cellState;
+import com.GameOfLife.enums.CellState;
 
 public class Cell {
 
-    private cellState state;
+    private CellState state;
 
     public Cell() {
-        this.state = cellState.DEAD;
+        this.state = CellState.DEAD;
+    }
+
+    public void cellNextGeneration(int aliveNeighbours) {
+        if (this.isAlive()) {
+            if (aliveNeighbours < 2 || aliveNeighbours > 3) {
+                this.kill();
+            }
+        } else {
+            if (aliveNeighbours == 3) {
+                this.makeAlive();
+            }
+        }
     }
 
     public void kill() {
-        this.state = cellState.DEAD;
+        this.state = CellState.DEAD;
     }
 
     public void makeAlive() {
-        this.state = cellState.ALIVE;
+        this.state = CellState.ALIVE;
     }
 
     public boolean isAlive() {
-        return this.state == cellState.ALIVE;
+        return this.state == CellState.ALIVE;
     }
 
     public char printCell() {

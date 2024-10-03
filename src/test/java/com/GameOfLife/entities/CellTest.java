@@ -54,4 +54,18 @@ class CellTest {
         assertNotEquals(cell, newCell);
     }
 
+    @Test
+    void testDeadCellNextGenerationFor3Neighbours(){
+        Cell cell = new Cell();
+        cell.cellNextGeneration(3);
+        assertTrue(cell.isAlive());
+    }
+
+    @Test
+    void testAliveCellNextGenerationFor2Neighbours(){
+        Cell cell = new Cell();
+        cell.makeAlive();
+        cell.cellNextGeneration(2);
+        assertTrue(cell.isAlive());
+    }
 }

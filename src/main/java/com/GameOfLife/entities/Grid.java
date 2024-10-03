@@ -4,7 +4,7 @@ import com.GameOfLife.Exceptions.InvalidSeedingPopulationException;
 
 public class Grid {
 
-    private Cell[][] board;
+    public Cell[][] board;
 
     public Grid(int rows, int columns) {
         board = new Cell[rows][columns];
@@ -13,6 +13,16 @@ public class Grid {
                 board[i][j] = new Cell();
             }
         }
+    }
+
+    public Grid(int rows, int columns,int populationPercentage) {
+        board = new Cell[rows][columns];
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                board[i][j] = new Cell();
+            }
+        }
+        randomSeeding(populationPercentage);
     }
 
     public Grid randomSeeding(int populationPercentage) {
@@ -63,19 +73,7 @@ public class Grid {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
                 int aliveNeighbours = countAliveNeighbours(i, j);
-                if (board[i][j].isAlive()) {
-                    if (aliveNeighbours < 2) {
-                        newGrid.board[i][j].kill();
-                    } else if (aliveNeighbours > 3) {
-                        newGrid.board[i][j].kill();
-                    } else {
-                        continue;
-                    }
-                } else {
-                    if (aliveNeighbours == 3) {
-                        newGrid.board[i][j].makeAlive();
-                    }
-                }
+                board[i][j].cellNextGeneration(aliveNeighbours);
             }
         }
         return newGrid;

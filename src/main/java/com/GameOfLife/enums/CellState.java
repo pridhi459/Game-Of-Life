@@ -1,10 +1,10 @@
 package com.GameOfLife.enums;
 
-public enum cellState {
+public enum CellState {
     DEAD('-'), ALIVE('*');
 
     private char symbol;
-    cellState(char symbol){
+    CellState(char symbol){
         this.symbol = symbol;
     }
 
