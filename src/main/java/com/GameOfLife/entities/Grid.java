@@ -72,7 +72,7 @@ public class Grid {
                 newGrid.board[i][j].cellNextGeneration(aliveNeighbours);
             }
         }
-       // printGrid();
+
         return newGrid;
     }
 
